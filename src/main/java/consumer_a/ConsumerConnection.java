@@ -1,4 +1,4 @@
-package artifactid;
+package consumer_a;
 
 import javax.jms.Connection;
 

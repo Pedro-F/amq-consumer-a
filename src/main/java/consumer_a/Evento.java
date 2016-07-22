@@ -1,4 +1,4 @@
-package artifactid;
+package consumer_a;
 
 
 public class Evento {

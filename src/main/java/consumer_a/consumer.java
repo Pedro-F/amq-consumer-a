@@ -4,10 +4,8 @@ import javax.jms.Connection;
 import javax.jms.Destination;
 import javax.jms.ExceptionListener;
 import javax.jms.JMSException;
-import javax.jms.Message;
 import javax.jms.MessageConsumer;
 import javax.jms.Session;
-import javax.jms.TextMessage;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
@@ -24,14 +22,14 @@ import com.google.gson.GsonBuilder;
 @EnableAutoConfiguration
 @EnableJms
 /**
- * Clase que produce una entrada en la cola JBoss EAP AMQ
+ * This class listen to messages on a JBoss EAP AMQ Queue
  * @author pedro.alonso.garcia
  *
  */
 
 
 public class consumer implements ExceptionListener {
-	//Variables Globales
+	
 	Connection conn = null;
 	Session session = null;
 	MessageConsumer consumidor = null;
@@ -42,8 +40,6 @@ public class consumer implements ExceptionListener {
 		System.out.println(text);
 		
 		Evento myEvento;
-        
-        
         
         Gson gson = new GsonBuilder().create();
         myEvento = gson.fromJson(text, Evento.class);
@@ -57,7 +53,7 @@ public class consumer implements ExceptionListener {
 				init();
 			}
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
+			System.out.println("Exception in home method. " + e.toString());
 			e.printStackTrace();
 		}
 		
@@ -66,7 +62,6 @@ public class consumer implements ExceptionListener {
 	}
 
 	private void init() {
-		// TODO Auto-generated method stub
 		
 		conn = ConsumerConnection.getConnection();
 		
@@ -83,7 +78,7 @@ public class consumer implements ExceptionListener {
 		
 		 }
 	    catch (Exception e) {
-	        System.out.println("Init Caught: " + e);
+	        System.out.println("Init Caught: " + e.toString());
 	        e.printStackTrace();
  	    }
 	}
@@ -93,7 +88,8 @@ public class consumer implements ExceptionListener {
     }
  
     public synchronized void onException(JMSException ex) {
-        System.out.println("JMS Exception occured.  Shutting down client.");
+        System.out.println("JMS Exception occured.  Shutting down client." + ex.toString());
+        ex.printStackTrace();
     }
 }
 	

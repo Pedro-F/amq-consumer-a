@@ -20,8 +20,7 @@ public class ConsumerConnection{
             // Create a Connection
             connection = connectionFactory.createConnection("user","password");
             connection.start();
-            
-            
+            System.out.println("########################## CONNECTION STARTED ############################");
 		}
         catch (Exception e) {
             System.out.println("Caught: " + e);

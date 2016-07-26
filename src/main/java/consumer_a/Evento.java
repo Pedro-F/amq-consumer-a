@@ -23,6 +23,13 @@ public class Evento {
 		body = new Body();
 	}
 	
+	public Evento(String id) {
+		super();
+		header = new Header();
+		header.setUID(id);
+		body = new Body();
+	}
+	
 	public Header getHeader() {
 		return header;
 	}

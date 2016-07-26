@@ -35,7 +35,7 @@ public class consumer implements ExceptionListener {
 	MessageConsumer consumidor = null;
 	
 	
-	@JmsListener(destination = "Consumer.A.VirtualTopic.PruebaAlex")
+	@JmsListener(destination = "Consumer.A.VirtualTopic.AMQTopic")
 	public void receiveQueue(String text) {
 		System.out.println(text);
 		System.out.println("@@@@@@@@@@@@@@@@@@@@@@@@@@ LISTENER @@@@@@@@@@@@@@@@@@@@@@@@@@@@");
@@ -70,7 +70,7 @@ public class consumer implements ExceptionListener {
 //			session = conn.createSession(false, Session.AUTO_ACKNOWLEDGE);
 //
 //            // Create the destination (Topic or Queue)
-//            Destination destination = session.createQueue("Consumer.As.VirtualTopic.PruebaAlex");
+//            Destination destination = session.createQueue("Consumer.As.VirtualTopic.AMQTopic");
 //
 //            // Create a MessageProducer from the Session to the Topic or Queue
 //            consumidor = session.createConsumer(destination);
